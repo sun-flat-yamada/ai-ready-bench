@@ -1,0 +1,79 @@
+name: Leaderboard Ingestion & Deploy
+
+on:
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'submissions/**'
+      - 'docs/**'
+  pull_request:
+    branches: [ master, main ]
+    paths:
+      - 'submissions/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Install Dependencies
+        run: |
+          uv venv
+          uv pip install -e ".[dev]"
+
+      - name: Validate Submissions and Compile Leaderboard
+        run: |
+          uv run aiready build-leaderboard --submissions-dir ./submissions --output ./docs/data/leaderboard.json
+
+      - name: Run Leaderboard Regression Tests
+        run: |
+          uv run pytest tests/test_leaderboard.py -v
+
+      - name: Commit Updated Leaderboard (on push to master)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/leaderboard.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(leaderboard): auto-aggregate community submissions" && git push)
+
+  deploy-pages:
+    needs: validate-and-build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

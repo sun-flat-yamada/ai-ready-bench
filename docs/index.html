@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Ready Document Conversion Benchmark Leaderboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Hero Header -->
+  <header class="header-hero">
+    <div class="header-content">
+      <div>
+        <span class="badge-tag">Community Leaderboard & Standards</span>
+        <h1 class="header-title">AI-Ready Document Conversion Leaderboard</h1>
+        <p class="header-subtitle">
+          Benchmarking document-to-AI-ready Markdown converters across Office (Word, Excel, PPT, Visio, Project, Access), PDF, and Images. Evaluated on AST Tree Edit Distance (TEDS), Table Fidelity, Kebab-case Image Linking, and Token Economics.
+        </p>
+      </div>
+      <div class="header-actions">
+        <a href="#how-to-submit" class="btn btn-primary">⚡ Submit Your Agent</a>
+        <a href="https://github.com/example/aiready-benchmark" target="_blank" class="btn btn-secondary">⭐ GitHub Repo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Key Metrics Stats Ribbon -->
+    <section class="stats-ribbon">
+      <div class="stat-card">
+        <div class="stat-card-title">Ranked Agents & Tools</div>
+        <div class="stat-card-val" id="stat-total-agents">5</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-title">Evaluation Test Suite</div>
+        <div class="stat-card-val">8 Formats</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-title">Primary Standard</div>
+        <div class="stat-card-val" style="color: var(--accent-emerald);">TEDS + Kebab Image</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-title">Last Automated Update</div>
+        <div class="stat-card-val" id="last-updated" style="font-size: 1.1rem; margin-top:0.5rem; color: var(--accent-cyan);">Syncing...</div>
+      </div>
+    </section>
+
+    <!-- Filter & Sort Controls -->
+    <section class="controls-bar">
+      <div class="search-box">
+        <input type="text" id="search-input" class="search-input" placeholder="🔍 Search by agent name, author, or tags (e.g. docling, office, vision)...">
+      </div>
+      <div class="filter-group">
+        <label for="sort-select" style="font-size:0.85rem; color:var(--text-muted);">Sort By:</label>
+        <select id="sort-select" class="select-ctrl">
+          <option value="composite">ACI Composite Score (High to Low)</option>
+          <option value="teds">TEDS Structural Fidelity</option>
+          <option value="table">Table Fidelity Score</option>
+          <option value="image">Image & Kebab Link Integrity</option>
+          <option value="latency">Mean Latency (Fastest First)</option>
+          <option value="cost">1K Ingestion Cost (Cheapest First)</option>
+          <option value="stars">Community Star Rating (Highest First)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Leaderboard Table -->
+    <div class="table-wrapper">
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th style="width: 70px;">Rank</th>
+            <th>Agent / Converter</th>
+            <th>ACI Score</th>
+            <th>TEDS (AST)</th>
+            <th>Table F1</th>
+            <th>Image & Kebab</th>
+            <th>Latency</th>
+            <th>Cost (1K docs)</th>
+            <th>Community Stars</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-tbody">
+          <!-- Populated by app.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Agent Distribution & Contribution Guide -->
+    <section class="agent-guide-card" id="how-to-submit">
+      <h2 style="font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">
+        🤖 Benchmark & Submit Your Custom Agent or Tool
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Anyone can benchmark an open-source library, a private container, or a custom LLM pipeline using the local runner, and submit the results to this leaderboard with automatic verification.
+      </p>
+
+      <div class="code-block">
+# 1. Install aiready-benchmark CLI
+git clone https://github.com/example/aiready-benchmark.git
+cd aiready-benchmark && uv pip install -e .
+
+# 2. Run benchmark on your custom converter or agent
+aiready run \
+  --dataset ./data/benchmark-suite \
+  --converter custom \
+  --name "MyDocAgent-v2" \
+  --custom-cmd "python my_agent.py {input} {output_dir}" \
+  --output-json ./reports/my_result.json
+
+# 3. Package and verify submission manifest
+aiready submit \
+  --result ./reports/my_result.json \
+  --agent-name "MyDocAgent" \
+  --author "your-github-handle" \
+  --version "2.1.0" \
+  --description "High-speed multi-modal converter with custom OCR and table parser."
+
+# 4. Push branch & Open a Pull Request!
+# GitHub Actions will validate checksums and auto-merge into the leaderboard.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Detail & Reviews Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDetailModal()">&times;</button>
+      <h2 id="modal-agent-name" style="font-size: 1.5rem; color: #fff;">Agent Details</h2>
+      <div id="modal-agent-author" style="font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 0.75rem;"></div>
+      <p id="modal-agent-desc" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;"></p>
+
+      <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.75rem;">Document Breakdown</h3>
+      <div style="overflow-x: auto; margin-bottom: 2rem;">
+        <table class="leaderboard-table" style="font-size: 0.85rem;">
+          <thead>
+            <tr>
+              <th>Case Name</th>
+              <th>Format</th>
+              <th>Score</th>
+              <th>TEDS</th>
+              <th>Table</th>
+              <th>Image</th>
+              <th>Latency</th>
+            </tr>
+          </thead>
+          <tbody id="modal-breakdown-tbody">
+            <!-- Breakdown rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Community Reviews Section -->
+      <div class="reviews-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.2rem; color: #fff;">Community Reviews & Star Ratings</h3>
+          <button class="btn btn-secondary" style="font-size:0.8rem; padding: 0.35rem 0.75rem;" onclick="openGitHubIssueTemplate()">
+            Submit Review via GitHub Issue
+          </button>
+        </div>
+
+        <!-- Reviews List -->
+        <div id="modal-reviews-list">
+          <!-- Rendered reviews -->
+        </div>
+
+        <!-- Add Review Form -->
+        <form class="review-form" id="review-form">
+          <h4 style="font-size: 1rem; color: var(--accent-cyan); margin-bottom: 1rem;">Leave a Word-of-Mouth Review & Star Rating</h4>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="review-author">Your Name / Handle</label>
+              <input type="text" id="review-author" class="form-control" placeholder="e.g. dev_sarah">
+            </div>
+            <div class="form-group">
+              <label for="review-persona">Your Engineering Persona</label>
+              <select id="review-persona" class="form-control">
+                <option value="LLM / RAG Architect">LLM / RAG Architect</option>
+                <option value="MLOps & Platform Eng">MLOps & Platform Eng</option>
+                <option value="Enterprise IT Auditor">Enterprise IT Auditor</option>
+                <option value="AI Research Scientist">AI Research Scientist</option>
+                <option value="Software Engineer">Software Engineer</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Star Rating</label>
+            <div class="star-picker" id="star-picker-container">
+              <!-- Rendered star spans -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="review-title">Review Headline</label>
+            <input type="text" id="review-title" class="form-control" placeholder="e.g. Outstanding Visio extraction, fast on large batches">
+          </div>
+
+          <div class="form-group">
+            <label for="review-body">Detailed Review & Experience</label>
+            <textarea id="review-body" class="form-control" rows="3" placeholder="Share your experience on table accuracy, image link preservation, memory usage, or production behavior..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            ⭐ Post Review & Update Leaderboard
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

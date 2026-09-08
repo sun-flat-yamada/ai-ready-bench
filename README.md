@@ -93,6 +93,51 @@ uv run aiready verify \
 
 ---
 
+## 🏆 Public Leaderboard & Community Ratings (GitHub Pages)
+
+The repository hosts an automated, interactive leaderboard deployable directly to **GitHub Pages** (`/docs` directory):
+
+- **Live Ranking Table**: Real-time ranking sorted by Composite ACI Score, TEDS, Table Fidelity, Image Integrity, Latency, and Ingestion Cost.
+- **⭐️ Star Ratings & Word-of-Mouth Reviews**: Community members can rate agents (1-5 stars) and post detailed feedback from distinct engineering personas (RAG Architect, MLOps, Enterprise Security, AI Researcher).
+- **GitHub Issue Sync**: Reviews can be submitted directly through the web UI and mirrored as GitHub Issues for permanent repository record.
+
+To view locally:
+```bash
+python -m http.server --directory docs 8000
+# Open http://localhost:8000 in your browser
+```
+
+---
+
+## 🤖 Distribute & Submit Your Custom Agent / Tool
+
+Developers and researchers can run benchmarks locally and submit their results to the community leaderboard with automatic verification:
+
+```bash
+# 1. Benchmark your custom agent/converter
+uv run aiready run \
+  --dataset ./data/benchmark-suite \
+  --converter custom \
+  --name "MyDoclingAgent" \
+  --custom-cmd "python my_converter.py {input} {output_dir}" \
+  --output-json ./reports/my_result.json
+
+# 2. Package and sign the submission manifest
+uv run aiready submit \
+  --result ./reports/my_result.json \
+  --agent-name "MyDoclingAgent" \
+  --author "your-github-username" \
+  --version "1.0.0" \
+  --description "Enhanced Docling layout engine with custom OCR table aligner"
+
+# 3. Compile the leaderboard locally or open a Pull Request
+uv run aiready build-leaderboard --submissions-dir ./submissions --output ./docs/data/leaderboard.json
+```
+
+When a Pull Request with a new file in `submissions/*.json` is opened, the automated GitHub Actions workflow (`.github/workflows/leaderboard-ingest.yml`) verifies the SHA256 payload checksum, compiles the leaderboard, and deploys it to GitHub Pages.
+
+---
+
 ## 🔬 Benchmarking External Converters (MarkItDown, Docling, Custom CLI)
 
 You can benchmark any external CLI tool or custom script using the generic command template:

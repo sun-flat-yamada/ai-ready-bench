@@ -260,5 +260,57 @@ def compare_runs(
     console.print(table)
 
 
+@app.command("submit")
+def submit_agent_result(
+    result_json: Path = typer.Option(..., "--result", "-r", help="Path to benchmark result JSON file."),
+    agent_name: str = typer.Option(..., "--agent-name", "-n", help="Name of the agent or tool (e.g. Docling-Custom)."),
+    author: str = typer.Option(..., "--author", "-a", help="Author name or GitHub handle."),
+    version: str = typer.Option("1.0.0", "--version", "-v", help="Agent or pipeline version."),
+    repo_url: Optional[str] = typer.Option(None, "--repo-url", help="URL to agent repository or paper."),
+    description: str = typer.Option("", "--description", help="Brief summary of the agent architecture."),
+    submissions_dir: Path = typer.Option(Path("./submissions"), "--submissions-dir", help="Submissions directory."),
+):
+    """Package and submit local benchmark results for inclusion on the community leaderboard."""
+    from aiready.agent.submitter import AgentSubmitter
+
+    if not result_json.exists():
+        console.print(f"[bold red]Result file not found: {result_json}[/bold red]")
+        raise typer.Exit(code=1)
+
+    res = BenchmarkRunResult.model_validate_json(result_json.read_text(encoding="utf-8"))
+    submitter = AgentSubmitter(submissions_dir)
+    sub = submitter.package_submission(
+        run_result=res,
+        agent_name=agent_name,
+        author=author,
+        version=version,
+        repository_url=repo_url,
+        description=description,
+    )
+    dest = submitter.save_submission(sub)
+
+    console.print(Panel(f"[bold green]Successfully packaged submission![/bold green]\n"
+                        f"File: [cyan]{dest}[/cyan]\n"
+                        f"Checksum (SHA256): [dim]{sub.checksum_sha256}[/dim]"))
+    console.print("[bold yellow]To submit to the public leaderboard:[/bold yellow]")
+    console.print(f"  1. Commit and push: [dim]git add {dest} && git commit -m 'feat: submit {agent_name} v{version}'[/dim]")
+    console.print("  2. Open a Pull Request to master. GitHub Actions will validate and publish automatically!")
+
+
+@app.command("build-leaderboard")
+def build_leaderboard(
+    submissions_dir: Path = typer.Option(Path("./submissions"), "--submissions-dir", help="Directory with submissions."),
+    output_json: Path = typer.Option(Path("./docs/data/leaderboard.json"), "--output", "-o", help="Target output JSON path."),
+):
+    """Scan submissions and compile the public leaderboard data for GitHub Pages."""
+    from aiready.evaluators.leaderboard_builder import LeaderboardBuilder
+
+    builder = LeaderboardBuilder(submissions_dir)
+    data = builder.build()
+    out = builder.write_leaderboard(output_json)
+
+    console.print(f"[bold green]Compiled leaderboard with {data.total_agents} agents to:[/bold green] [cyan]{out}[/cyan]")
+
+
 if __name__ == "__main__":
     app()
