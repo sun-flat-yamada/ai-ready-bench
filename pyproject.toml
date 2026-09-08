@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "aiready-benchmark"
+name = "ai-ready-bench"
 version = "0.1.0"
-description = "AI-Ready Document Conversion Benchmark Suite across Office, PDF, and Image formats"
+description = "AI-Ready Document Conversion Benchmark Suite & Community Leaderboard across Office, PDF, and Image formats"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 authors = [
-    { name = "Antigravity Engineering", email = "engineering@antigravity.ai" }
+    { name = "sun-flat-yamada", email = "engineering@example.com" }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -24,6 +24,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Text Processing :: Markup :: Markdown",
 ]
+
 dependencies = [
     "typer>=0.9.0",
     "rich>=13.7.0",
@@ -39,6 +40,12 @@ dependencies = [
     "pypdf>=4.0.0",
 ]
 
+[project.urls]
+Homepage = "https://sun-flat-yamada.github.io/ai-ready-bench/"
+Repository = "https://github.com/sun-flat-yamada/ai-ready-bench"
+Documentation = "https://github.com/sun-flat-yamada/ai-ready-bench/tree/main/docs"
+Issues = "https://github.com/sun-flat-yamada/ai-ready-bench/issues"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
@@ -47,6 +54,7 @@ dev = [
 
 [project.scripts]
 aiready = "aiready.cli:app"
+ai-ready-bench = "aiready.cli:app"
 doc-ai-bench = "aiready.cli:app"
 
 [tool.hatch.build.targets.wheel]

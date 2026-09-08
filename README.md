@@ -1,11 +1,14 @@
 # AI-Ready Document Conversion Benchmark Suite (`aiready`)
 
+[![CI](https://github.com/sun-flat-yamada/ai-ready-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/sun-flat-yamada/ai-ready-bench/actions)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/pytest-15%20passed-brightgreen.svg)]()
-[![Code Style](https://img.shields.io/badge/code%20style-ruff%20%2F%20pep8-black.svg)]()
+[![Leaderboard](https://img.shields.io/badge/Leaderboard-Live%20on%20GitHub%20Pages-brightgreen.svg)](https://sun-flat-yamada.github.io/ai-ready-bench/)
+[![Tests](https://img.shields.io/badge/pytest-20%20passed-brightgreen.svg)]()
 
 A software-driven, deterministic benchmark framework for evaluating document-to-AI-ready Markdown converters. It covers Office suites (Word, Excel, PowerPoint, Visio, Project, Access/DB), PDF, and Images, enforcing strict AST structural fidelity (TEDS), deterministic image extraction with kebab-case semantic naming, link integrity cross-checks, and token economic profiling.
+
+Live Interactive Leaderboard: **[https://sun-flat-yamada.github.io/ai-ready-bench/](https://sun-flat-yamada.github.io/ai-ready-bench/)**
 
 ---
 
@@ -45,8 +48,8 @@ Requires Python 3.10 or newer. Using [`uv`](https://github.com/astral-sh/uv) is 
 
 ```bash
 # Clone the repository
-git clone https://github.com/example/aiready-benchmark.git
-cd aiready-benchmark
+git clone https://github.com/sun-flat-yamada/ai-ready-bench.git
+cd ai-ready-bench
 
 # Create virtual environment and install dependencies
 uv venv .venv

@@ -1,0 +1,45 @@
+name: Community Agent Review
+description: Submit a word-of-mouth review and star rating for an existing converter/agent
+labels: ["community-review"]
+body:
+  - type: markdown
+    attributes:
+      value: Share your production experience, strengths, and failure modes of document converters on the leaderboard!
+  - type: input
+    id: agent_name
+    attributes:
+      label: Target Agent / Tool Name
+      placeholder: e.g. IBM Docling, Microsoft MarkItDown, Reference-Native
+    validations:
+      required: true
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Star Rating
+      options:
+        - "5 - Excellent (Highly Recommended)"
+        - "4 - Good (Minor Limitations)"
+        - "3 - Average (Noticeable Trade-offs)"
+        - "2 - Below Average (Frequent Issues)"
+        - "1 - Poor (Critical Failures)"
+    validations:
+      required: true
+  - type: dropdown
+    id: persona
+    attributes:
+      label: Your Engineering Persona
+      options:
+        - "LLM / RAG Architect"
+        - "MLOps & Platform Eng"
+        - "Enterprise IT Auditor"
+        - "AI Research Scientist"
+        - "Software Engineer"
+    validations:
+      required: true
+  - type: textarea
+    id: review_body
+    attributes:
+      label: Detailed Review
+      description: What was your experience with table accuracy, image links, latency, and memory footprint?
+    validations:
+      required: true

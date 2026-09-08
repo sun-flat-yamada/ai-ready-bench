@@ -269,7 +269,7 @@ function openGitHubIssueTemplate() {
 - **Summary**:
 [Your thoughts on table fidelity, image link integrity, and latency performance]
 `);
-  const url = `https://github.com/example/aiready-benchmark/issues/new?title=${title}&body=${body}`;
+  const url = `https://github.com/sun-flat-yamada/ai-ready-bench/issues/new?title=${title}&body=${body}`;
   window.open(url, "_blank");
 }
 
