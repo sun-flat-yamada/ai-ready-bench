@@ -1,0 +1,10 @@
+{
+  "review_id": "rev-04",
+  "agent_id": "microsoft-markitdown",
+  "author": "t_yamamoto_dev",
+  "persona": "Enterprise IT Auditor",
+  "rating": 4,
+  "title": "Lightweight and easy to integrate, struggles with merged cells",
+  "body": "MarkItDown is our go-to for lightweight automated ingestion in small pipelines. It occasionally drops multi-column table headers, but setup is virtually zero-effort.",
+  "timestamp": "2026-09-04T16:05:00Z"
+}

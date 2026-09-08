@@ -96,3 +96,28 @@ Where:
 - $S_{\text{Image}}$: Weighted score of extraction rate (35%), kebab-case compliance (25%), link integrity (30%), and keyword match (10%).
 - $S_{\text{Clean}}$: Freedom from raw unparsed HTML boilerplate and control characters.
 - $S_{\text{Heading}}$: Preservation of heading hierarchy depth and order.
+
+---
+
+## 4. Conflict-Free Namespaced Storage Architecture
+
+To enable scalable community collaboration without Git merge conflicts when hundreds of contributors submit benchmarks from their forks, the repository strictly enforces **Namespaced Runs** and **Atomic Reviews**:
+
+```
+submissions/
+├── runs/
+│   ├── <author_slug>/                                # Complete author isolation
+│   │   └── <agent_slug>_v<version>_<short_sha>.json  # Content-addressed deterministic filename
+│   │       ├── run_result (full benchmark metrics)
+│   │       ├── system_env (CPU, OS, Python version)
+│   │       └── checksum_sha256 (tamper-proofing)
+└── reviews/
+    └── <agent_slug>/                                 # Per-agent directory
+        └── <author_slug>_<review_id>.json            # 1 Review = 1 Independent file
+```
+
+### Key Conflict-Free Properties:
+1. **Independent File Inodes**: Every submission and review is saved as a completely new file. No two contributors ever edit the same file path.
+2. **Zero Shared Arrays**: Traditional monolithic `reviews.json` or `results.json` files are eliminated. Pull Requests are strictly additive.
+3. **Automated Recursive Ingestion**: The GitHub Actions runner executes `aiready build-leaderboard`, recursively compiling all namespaced files into `docs/data/leaderboard.json` automatically upon merge.
+

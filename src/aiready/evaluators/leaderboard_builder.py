@@ -1,4 +1,4 @@
-"""Leaderboard compilation, validation, and JSON generation engine."""
+"""Leaderboard compilation engine with recursive, collision-free namespaced scanning."""
 
 import json
 from pathlib import Path
@@ -49,48 +49,79 @@ class LeaderboardData(BaseModel):
 
 
 class LeaderboardBuilder:
-    """Scans incoming submissions, validates authenticity, and compiles leaderboard.json."""
+    """Recursively scans namespaced runs and atomic review files to compile leaderboard.json."""
 
-    def __init__(self, submissions_dir: Path, reviews_file: Optional[Path] = None):
+    def __init__(self, submissions_dir: Path):
         self.submissions_dir = Path(submissions_dir)
-        self.reviews_file = Path(reviews_file) if reviews_file else self.submissions_dir / "reviews.json"
+        self.runs_dir = self.submissions_dir / "runs"
+        self.reviews_dir = self.submissions_dir / "reviews"
 
     def load_reviews(self) -> Dict[str, List[ReviewComment]]:
-        """Load community reviews indexed by agent_id."""
-        if not self.reviews_file.exists():
-            return {}
-        try:
-            raw = json.loads(self.reviews_file.read_text(encoding="utf-8"))
-            reviews_by_agent: Dict[str, List[ReviewComment]] = {}
-            for item in raw:
-                rev = ReviewComment.model_validate(item)
-                reviews_by_agent.setdefault(rev.agent_id, []).append(rev)
-            return reviews_by_agent
-        except Exception:
-            return {}
+        """Load atomic community reviews recursively indexed by agent_id."""
+        reviews_by_agent: Dict[str, List[ReviewComment]] = {}
 
-    def build(self) -> LeaderboardData:
-        """Scan, validate, rank, and compile all valid submissions."""
-        reviews_map = self.load_reviews()
-        valid_submissions: List[AgentSubmission] = []
-
-        if self.submissions_dir.exists():
-            for f in self.submissions_dir.glob("*.json"):
-                if f.name == "reviews.json":
-                    continue
+        # 1. Recursive scan of atomic review files (submissions/reviews/**/*.json)
+        if self.reviews_dir.exists():
+            for f in self.reviews_dir.rglob("*.json"):
                 try:
-                    sub = AgentSubmission.model_validate_json(f.read_text(encoding="utf-8"))
-                    # Integrity verification
-                    if not sub.verify_integrity():
-                        # Still record if computed matches when recomputed
-                        sub.checksum_sha256 = sub.compute_checksum()
-                    valid_submissions.append(sub)
+                    rev = ReviewComment.model_validate_json(f.read_text(encoding="utf-8"))
+                    reviews_by_agent.setdefault(rev.agent_id, []).append(rev)
                 except Exception:
                     continue
 
+        # 2. Backward compatibility: check monolithic submissions/reviews.json if present
+        legacy_reviews = self.submissions_dir / "reviews.json"
+        if legacy_reviews.exists():
+            try:
+                raw = json.loads(legacy_reviews.read_text(encoding="utf-8"))
+                for item in raw:
+                    rev = ReviewComment.model_validate(item)
+                    # Deduplicate by review_id
+                    existing_ids = {r.review_id for r in reviews_by_agent.get(rev.agent_id, [])}
+                    if rev.review_id not in existing_ids:
+                        reviews_by_agent.setdefault(rev.agent_id, []).append(rev)
+            except Exception:
+                pass
+
+        return reviews_by_agent
+
+    def build(self) -> LeaderboardData:
+        """Scan namespaced submissions, deduplicate, rank, and compile all valid submissions."""
+        reviews_map = self.load_reviews()
+        valid_submissions: Dict[str, AgentSubmission] = {}
+
+        candidate_files: List[Path] = []
+        # Recursive scan of namespaced runs (submissions/runs/**/*.json)
+        if self.runs_dir.exists():
+            candidate_files.extend(list(self.runs_dir.rglob("*.json")))
+
+        # Backward compatibility for flat submissions/*.json
+        if self.submissions_dir.exists():
+            for f in self.submissions_dir.glob("*.json"):
+                if f.name != "reviews.json":
+                    candidate_files.append(f)
+
+        for f in candidate_files:
+            try:
+                sub = AgentSubmission.model_validate_json(f.read_text(encoding="utf-8"))
+                if not sub.verify_integrity():
+                    sub.checksum_sha256 = sub.compute_checksum()
+
+                # Deduplicate by (agent_id, author) keeping the latest submission
+                key = f"{sub.agent_id}::{sub.author}"
+                if key not in valid_submissions:
+                    valid_submissions[key] = sub
+                else:
+                    # Replace if this one is newer
+                    curr = valid_submissions[key]
+                    if sub.system_env.timestamp >= curr.system_env.timestamp:
+                        valid_submissions[key] = sub
+            except Exception:
+                continue
+
         entries: List[LeaderboardEntry] = []
 
-        for sub in valid_submissions:
+        for sub in valid_submissions.values():
             res = sub.run_result
             revs = reviews_map.get(sub.agent_id, [])
             avg_stars = (sum(r.rating for r in revs) / len(revs)) if revs else 0.0
@@ -143,7 +174,6 @@ class LeaderboardBuilder:
         # Sort descending by composite score (highest first)
         entries.sort(key=lambda x: x.composite_score, reverse=True)
 
-        # Assign ranks
         for idx, e in enumerate(entries, start=1):
             e.rank = idx
 

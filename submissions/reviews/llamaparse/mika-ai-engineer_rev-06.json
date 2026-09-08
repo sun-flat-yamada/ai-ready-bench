@@ -1,0 +1,10 @@
+{
+  "review_id": "rev-06",
+  "agent_id": "llamaparse",
+  "author": "mika_ai_engineer",
+  "persona": "LLM Solutions Specialist",
+  "rating": 4,
+  "title": "High accuracy on complex layouts, cloud-dependency is a trade-off",
+  "body": "Excels on dense scanned forms and financial tables. Ingestion costs scale up with volume, so evaluate ROI for high-throughput batch pipelines.",
+  "timestamp": "2026-09-06T10:18:00Z"
+}

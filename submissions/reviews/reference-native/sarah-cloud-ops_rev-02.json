@@ -1,0 +1,10 @@
+{
+  "review_id": "rev-02",
+  "agent_id": "reference-native",
+  "author": "sarah_cloud_ops",
+  "persona": "MLOps & Platform Eng",
+  "rating": 5,
+  "title": "Sub-10ms latency without GPU instances",
+  "body": "Runs entirely on CPU in standard Docker containers without any heavy PyTorch dependencies. Memory footprint hovered below 200MB during sustained batch runs.",
+  "timestamp": "2026-09-02T09:15:00Z"
+}

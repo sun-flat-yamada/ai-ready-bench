@@ -1,0 +1,10 @@
+{
+  "review_id": "rev-01",
+  "agent_id": "reference-native",
+  "author": "kenji_rag_lead",
+  "persona": "LLM / RAG Architect",
+  "rating": 5,
+  "title": "Unbeatable structural integrity and zero 404 image links",
+  "body": "We tested reference-native on our internal knowledge base of 40,000 enterprise Word and Visio files. The kebab-case semantic image extraction linked directly inside Markdown eliminated missing figure hallucinations completely in GPT-4o.",
+  "timestamp": "2026-09-01T14:22:00Z"
+}

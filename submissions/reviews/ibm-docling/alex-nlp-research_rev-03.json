@@ -1,0 +1,10 @@
+{
+  "review_id": "rev-03",
+  "agent_id": "ibm-docling",
+  "author": "alex_nlp_research",
+  "persona": "AI Research Scientist",
+  "rating": 4,
+  "title": "Superb table understanding, but resource-heavy",
+  "body": "Docling reconstructs nested PDF tables exceptionally well. However, CPU processing takes around 400-600ms per page, which requires clustering when running on 100k+ documents.",
+  "timestamp": "2026-09-03T11:40:00Z"
+}

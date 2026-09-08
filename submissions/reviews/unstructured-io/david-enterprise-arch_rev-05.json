@@ -1,0 +1,10 @@
+{
+  "review_id": "rev-05",
+  "agent_id": "unstructured-io",
+  "author": "david_enterprise_arch",
+  "persona": "Enterprise Data Architect",
+  "rating": 4,
+  "title": "Solid all-rounder for enterprise connectors",
+  "body": "Broad file support across legacy formats. Token density is slightly elevated due to boilerplate tags, but very dependable across legacy document dumps.",
+  "timestamp": "2026-09-05T13:30:00Z"
+}

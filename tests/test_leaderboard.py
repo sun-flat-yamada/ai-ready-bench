@@ -1,4 +1,4 @@
-"""Tests for leaderboard aggregation, ranking, and review score compilation."""
+"""Tests for leaderboard aggregation, ranking, and review score compilation with namespaced storage."""
 
 import json
 import tempfile
@@ -7,19 +7,20 @@ from typer.testing import CliRunner
 
 from aiready.evaluators.leaderboard_builder import LeaderboardBuilder
 from aiready.agent.schema import AgentSubmission, ReviewComment
+from aiready.agent.submitter import AgentSubmitter
 from aiready.evaluators.benchmark_runner import BenchmarkRunResult
 from aiready.cli import app
 
 runner = CliRunner()
 
 
-def test_leaderboard_builder_aggregation():
+def test_leaderboard_builder_namespaced_aggregation():
     with tempfile.TemporaryDirectory() as tmpdir:
         sub_dir = Path(tmpdir) / "submissions"
-        sub_dir.mkdir()
+        submitter = AgentSubmitter(sub_dir)
         out_json = Path(tmpdir) / "docs" / "data" / "leaderboard.json"
 
-        # 1. Create two dummy submissions
+        # 1. Create two submissions from different authors
         res1 = BenchmarkRunResult(
             converter_name="agent-fast",
             timestamp="2026-09-08 00:00:00",
@@ -38,14 +39,8 @@ def test_leaderboard_builder_aggregation():
             projected_cost_per_1k_suite_usd={},
             cases=[],
         )
-        sub1 = AgentSubmission(
-            agent_id="agent-fast",
-            agent_name="Agent Fast",
-            version="1.0.0",
-            author="dev_a",
-            run_result=res1,
-        )
-        (sub_dir / "agent-fast.json").write_text(sub1.model_dump_json(), encoding="utf-8")
+        sub1 = submitter.package_submission(res1, "Agent Fast", "dev-alice", "1.0.0")
+        submitter.save_submission(sub1)
 
         res2 = BenchmarkRunResult(
             converter_name="agent-super",
@@ -65,29 +60,21 @@ def test_leaderboard_builder_aggregation():
             projected_cost_per_1k_suite_usd={},
             cases=[],
         )
-        sub2 = AgentSubmission(
-            agent_id="agent-super",
-            agent_name="Agent Super",
-            version="2.0.0",
-            author="dev_b",
-            run_result=res2,
-        )
-        (sub_dir / "agent-super.json").write_text(sub2.model_dump_json(), encoding="utf-8")
+        sub2 = submitter.package_submission(res2, "Agent Super", "dev-bob", "2.0.0")
+        submitter.save_submission(sub2)
 
-        # 2. Add a review
-        reviews = [
-            {
-                "review_id": "r1",
-                "agent_id": "agent-super",
-                "author": "critic",
-                "persona": "RAG Lead",
-                "rating": 5,
-                "title": "Incredible accuracy",
-                "body": "Best parser ever",
-                "timestamp": "2026-09-08T00:00:00Z"
-            }
-        ]
-        (sub_dir / "reviews.json").write_text(json.dumps(reviews), encoding="utf-8")
+        # 2. Add atomic reviews
+        rev = ReviewComment(
+            review_id="r1",
+            agent_id="agent-super",
+            author="critic",
+            persona="RAG Lead",
+            rating=5,
+            title="Incredible accuracy",
+            body="Best parser ever",
+            timestamp="2026-09-08T00:00:00Z"
+        )
+        submitter.save_review(rev)
 
         # 3. Build leaderboard
         builder = LeaderboardBuilder(sub_dir)
@@ -112,7 +99,6 @@ def test_leaderboard_builder_aggregation():
 def test_cli_build_leaderboard():
     with tempfile.TemporaryDirectory() as tmpdir:
         sub_dir = Path(tmpdir) / "submissions"
-        sub_dir.mkdir()
         out_json = Path(tmpdir) / "leaderboard.json"
 
         cli_res = runner.invoke(app, [
