@@ -15,6 +15,32 @@
   --gold-rank: #eab308;
   --silver-rank: #94a3b8;
   --bronze-rank: #b45309;
+
+  /* Distribution Tiers (Top 10 relative performance) */
+  --tier-best-text: #34d399;
+  --tier-best-bg: rgba(52, 211, 153, 0.15);
+  --tier-best-border: rgba(52, 211, 153, 0.35);
+  --tier-best-bar: linear-gradient(90deg, #10b981, #34d399);
+
+  --tier-good-text: #38bdf8;
+  --tier-good-bg: rgba(56, 189, 248, 0.15);
+  --tier-good-border: rgba(56, 189, 248, 0.35);
+  --tier-good-bar: linear-gradient(90deg, #0284c7, #38bdf8);
+
+  --tier-fair-text: #fbbf24;
+  --tier-fair-bg: rgba(251, 191, 36, 0.15);
+  --tier-fair-border: rgba(251, 191, 36, 0.35);
+  --tier-fair-bar: linear-gradient(90deg, #d97706, #fbbf24);
+
+  --tier-low-text: #fb923c;
+  --tier-low-bg: rgba(251, 146, 60, 0.15);
+  --tier-low-border: rgba(251, 146, 60, 0.35);
+  --tier-low-bar: linear-gradient(90deg, #ea580c, #fb923c);
+
+  --tier-poor-text: #f87171;
+  --tier-poor-bg: rgba(248, 113, 113, 0.15);
+  --tier-poor-border: rgba(248, 113, 113, 0.35);
+  --tier-poor-bar: linear-gradient(90deg, #dc2626, #f87171);
 }
 
 * {
@@ -270,6 +296,151 @@ body {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+/* ── Score Distribution Cell ── */
+.score-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 80px;
+}
+
+.score-cell .score-value {
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Tier color classes */
+.tier-best .score-value  { color: var(--tier-best-text);  background: var(--tier-best-bg);  border: 1px solid var(--tier-best-border); }
+.tier-good .score-value  { color: var(--tier-good-text);  background: var(--tier-good-bg);  border: 1px solid var(--tier-good-border); }
+.tier-fair .score-value  { color: var(--tier-fair-text);  background: var(--tier-fair-bg);  border: 1px solid var(--tier-fair-border); }
+.tier-low  .score-value  { color: var(--tier-low-text);   background: var(--tier-low-bg);   border: 1px solid var(--tier-low-border); }
+.tier-poor .score-value  { color: var(--tier-poor-text);  background: var(--tier-poor-bg);  border: 1px solid var(--tier-poor-border); }
+
+/* Micro Distribution Bar */
+.dist-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dist-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+
+.tier-best .dist-bar-fill { background: var(--tier-best-bar); }
+.tier-good .dist-bar-fill { background: var(--tier-good-bar); }
+.tier-fair .dist-bar-fill { background: var(--tier-fair-bar); }
+.tier-low  .dist-bar-fill { background: var(--tier-low-bar); }
+.tier-poor .dist-bar-fill { background: var(--tier-poor-bar); }
+
+/* ACI Composite Score Pill (special emphasis) */
+.score-pill-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 70px;
+}
+
+.score-pill-cell .score-pill {
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.tier-best .score-pill { color: var(--tier-best-text); background: var(--tier-best-bg); border: 1px solid var(--tier-best-border); }
+.tier-good .score-pill { color: var(--tier-good-text); background: var(--tier-good-bg); border: 1px solid var(--tier-good-border); }
+.tier-fair .score-pill { color: var(--tier-fair-text); background: var(--tier-fair-bg); border: 1px solid var(--tier-fair-border); }
+.tier-low  .score-pill { color: var(--tier-low-text);  background: var(--tier-low-bg);  border: 1px solid var(--tier-low-border); }
+.tier-poor .score-pill { color: var(--tier-poor-text); background: var(--tier-poor-bg); border: 1px solid var(--tier-poor-border); }
+
+/* ── Cost Cell (Right-aligned, tabular nums) ── */
+.cost-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+  min-width: 90px;
+}
+
+.cost-cell .score-value {
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-cell .dist-bar-track {
+  width: 100%;
+  max-width: 90px;
+}
+
+.th-cost,
+.td-cost {
+  text-align: right !important;
+}
+
+/* ── Distribution Legend ── */
+.distribution-legend {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.distribution-legend .legend-title {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.8rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legend-swatch.swatch-best { background: var(--tier-best-text); }
+.legend-swatch.swatch-good { background: var(--tier-good-text); }
+.legend-swatch.swatch-fair { background: var(--tier-fair-text); }
+.legend-swatch.swatch-low  { background: var(--tier-low-text); }
+.legend-swatch.swatch-poor { background: var(--tier-poor-text); }
+
+.legend-note {
+  font-style: italic;
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-left: auto;
 }
 
 /* Modal */

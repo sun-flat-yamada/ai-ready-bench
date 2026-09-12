@@ -78,14 +78,95 @@ function getAllReviewsForAgent(agentId, baseReviews) {
   return [...baseReviews, ...custom];
 }
 
+/**
+ * Compute min/max ranges across displayed Top-10 entries for distribution normalization.
+ */
+function computeDistributionRanges(data) {
+  const top10 = data.slice(0, 10);
+  if (top10.length === 0) return null;
+
+  const range = (arr) => ({ min: Math.min(...arr), max: Math.max(...arr) });
+
+  return {
+    composite: range(top10.map(e => e.composite_score)),
+    teds:      range(top10.map(e => e.teds_score)),
+    table:     range(top10.map(e => e.table_score)),
+    image:     range(top10.map(e => e.image_score)),
+    latency:   range(top10.map(e => e.latency_ms)),
+    cost:      range(top10.map(e => e.projected_cost_1k_gpt4o)),
+  };
+}
+
+/**
+ * Normalize a value to 0..1 ratio within a min-max range.
+ * @param {number} val - The value to normalize.
+ * @param {object} range - { min, max } range object.
+ * @param {boolean} invert - If true, lower value = higher ratio (for cost/latency).
+ * @returns {number} ratio 0..1
+ */
+function normalizeRatio(val, range, invert) {
+  if (range.max === range.min) return 1.0; // All entries equal = best
+  const ratio = (val - range.min) / (range.max - range.min);
+  return invert ? (1 - ratio) : ratio;
+}
+
+/**
+ * Map a 0..1 ratio to a tier class name.
+ */
+function getTierClass(ratio) {
+  if (ratio >= 0.80) return "tier-best";
+  if (ratio >= 0.60) return "tier-good";
+  if (ratio >= 0.40) return "tier-fair";
+  if (ratio >= 0.20) return "tier-low";
+  return "tier-poor";
+}
+
+/**
+ * Build a score cell HTML snippet with value badge + micro distribution bar.
+ */
+function buildScoreCell(displayText, ratio, tier, tooltip) {
+  const pct = Math.round(ratio * 100);
+  return `
+    <div class="score-cell ${tier}" title="${tooltip}">
+      <span class="score-value">${displayText}</span>
+      <div class="dist-bar-track"><div class="dist-bar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+}
+
+/**
+ * Build the ACI composite score pill cell.
+ */
+function buildScorePillCell(displayText, ratio, tier, tooltip) {
+  const pct = Math.round(ratio * 100);
+  return `
+    <div class="score-pill-cell ${tier}" title="${tooltip}">
+      <span class="score-pill">${displayText}</span>
+      <div class="dist-bar-track"><div class="dist-bar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+}
+
+/**
+ * Build the cost cell HTML snippet (right-aligned, monospace, inverted polarity).
+ */
+function buildCostCell(displayText, ratio, tier, tooltip) {
+  const pct = Math.round(ratio * 100);
+  return `
+    <div class="cost-cell ${tier}" title="${tooltip}">
+      <span class="score-value">${displayText}</span>
+      <div class="dist-bar-track"><div class="dist-bar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+}
+
 function renderLeaderboard() {
   const tbody = document.getElementById("leaderboard-tbody");
   const data = getSortedAndFilteredData();
 
   if (data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2rem; color: #9ca3af;">No tools match your query.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding: 2rem; color: #9ca3af;">No tools match your query.</td></tr>`;
     return;
   }
+
+  const ranges = computeDistributionRanges(data);
 
   tbody.innerHTML = data.map((entry, idx) => {
     const rankClass = idx === 0 ? "rank-1" : (idx === 1 ? "rank-2" : (idx === 2 ? "rank-3" : "rank-other"));
@@ -93,6 +174,29 @@ function renderLeaderboard() {
     const avgStars = getAgentStarAverage(entry);
     const starDisplay = avgStars > 0 ? `★ ${avgStars.toFixed(1)}` : `☆ New`;
     const revCount = getAllReviewsForAgent(entry.agent_id, entry.reviews || []).length;
+
+    // Compute ratios (higher is better for scores; inverted for cost/latency)
+    const rComposite = normalizeRatio(entry.composite_score, ranges.composite, false);
+    const rTeds      = normalizeRatio(entry.teds_score,      ranges.teds,      false);
+    const rTable     = normalizeRatio(entry.table_score,     ranges.table,     false);
+    const rImage     = normalizeRatio(entry.image_score,     ranges.image,     false);
+    const rLatency   = normalizeRatio(entry.latency_ms,      ranges.latency,   true);  // Lower = better
+    const rCost      = normalizeRatio(entry.projected_cost_1k_gpt4o, ranges.cost, true); // Lower = better
+
+    const tComposite = getTierClass(rComposite);
+    const tTeds      = getTierClass(rTeds);
+    const tTable     = getTierClass(rTable);
+    const tImage     = getTierClass(rImage);
+    const tLatency   = getTierClass(rLatency);
+    const tCost      = getTierClass(rCost);
+
+    // Tooltip descriptions
+    const tipComposite = `ACI Score: ${entry.composite_score.toFixed(1)} — Top 10 position: ${Math.round(rComposite * 100)}%`;
+    const tipTeds      = `TEDS: ${(entry.teds_score * 100).toFixed(1)}% — Top 10 position: ${Math.round(rTeds * 100)}%`;
+    const tipTable     = `Table F1: ${(entry.table_score * 100).toFixed(1)}% — Top 10 position: ${Math.round(rTable * 100)}%`;
+    const tipImage     = `Image: ${(entry.image_score * 100).toFixed(1)}% — Top 10 position: ${Math.round(rImage * 100)}%`;
+    const tipLatency   = `Latency: ${entry.latency_ms.toFixed(0)} ms — Efficiency: ${Math.round(rLatency * 100)}% (lower is better)`;
+    const tipCost      = `Cost: $${entry.projected_cost_1k_gpt4o.toFixed(4)} — Efficiency: ${Math.round(rCost * 100)}% (lower is better)`;
 
     return `
       <tr>
@@ -104,12 +208,12 @@ function renderLeaderboard() {
           </div>
           <div class="agent-meta">by ${entry.author} ${entry.repository_url ? `• <a href="${entry.repository_url}" target="_blank" style="color:#38bdf8;">repo</a>` : ""}</div>
         </td>
-        <td><span class="score-pill">${entry.composite_score.toFixed(1)}</span></td>
-        <td>${(entry.teds_score * 100).toFixed(1)}%</td>
-        <td>${(entry.table_score * 100).toFixed(1)}%</td>
-        <td>${(entry.image_score * 100).toFixed(1)}%</td>
-        <td>${entry.latency_ms.toFixed(0)} ms</td>
-        <td>$${entry.projected_cost_1k_gpt4o.toFixed(4)}</td>
+        <td>${buildScorePillCell(entry.composite_score.toFixed(1), rComposite, tComposite, tipComposite)}</td>
+        <td>${buildScoreCell((entry.teds_score * 100).toFixed(1) + '%', rTeds, tTeds, tipTeds)}</td>
+        <td>${buildScoreCell((entry.table_score * 100).toFixed(1) + '%', rTable, tTable, tipTable)}</td>
+        <td>${buildScoreCell((entry.image_score * 100).toFixed(1) + '%', rImage, tImage, tipImage)}</td>
+        <td>${buildScoreCell(entry.latency_ms.toFixed(0) + ' ms', rLatency, tLatency, tipLatency)}</td>
+        <td class="td-cost">${buildCostCell('$' + entry.projected_cost_1k_gpt4o.toFixed(4), rCost, tCost, tipCost)}</td>
         <td>
           <div class="star-rating-display">
             <span>${starDisplay}</span>
@@ -118,7 +222,7 @@ function renderLeaderboard() {
         </td>
         <td>
           <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.8rem;" onclick="openDetailModal('${entry.agent_id}')">
-            Details & Reviews
+            Details &amp; Reviews
           </button>
         </td>
       </tr>

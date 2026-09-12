@@ -66,8 +66,19 @@
       </div>
     </section>
 
+    <!-- Distribution Legend -->
+    <div class="distribution-legend">
+      <span class="legend-title">Top 10 Distribution:</span>
+      <span class="legend-item"><span class="legend-swatch swatch-best"></span> Best (Top 20%)</span>
+      <span class="legend-item"><span class="legend-swatch swatch-good"></span> Good</span>
+      <span class="legend-item"><span class="legend-swatch swatch-fair"></span> Fair</span>
+      <span class="legend-item"><span class="legend-swatch swatch-low"></span> Low</span>
+      <span class="legend-item"><span class="legend-swatch swatch-poor"></span> Poor</span>
+      <span class="legend-note">💡 Cost & Latency: Lower = Better (Green)</span>
+    </div>
+
     <!-- Leaderboard Table -->
-    <div class="table-wrapper">
+    <div class="table-wrapper" style="border-radius: 0 0 8px 8px;">
       <table class="leaderboard-table">
         <thead>
           <tr>
@@ -78,7 +89,7 @@
             <th>Table F1</th>
             <th>Image & Kebab</th>
             <th>Latency</th>
-            <th>Cost (1K docs)</th>
+            <th class="th-cost">Cost (1K docs)</th>
             <th>Community Stars</th>
             <th>Action</th>
           </tr>
