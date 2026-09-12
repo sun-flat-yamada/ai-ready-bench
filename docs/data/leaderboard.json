@@ -1,0 +1,911 @@
+{
+  "generated_at": "2026-09-12 10:41:15 UTC",
+  "total_agents": 8,
+  "entries": [
+    {
+      "rank": 1,
+      "agent_id": "reference-native",
+      "agent_name": "Reference-Native",
+      "version": "1.0.0",
+      "author": "Antigravity Engineering",
+      "repository_url": null,
+      "description": "Built-in pure software converter with strict AST parsing and kebab-case image extraction.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 99.65,
+      "teds_score": 0.9982,
+      "table_score": 0.9961,
+      "image_score": 0.9912,
+      "kebab_compliance": 1.0,
+      "link_integrity": 1.0,
+      "cleanliness_score": 1.0,
+      "latency_ms": 8.56,
+      "peak_memory_mb": 170.16,
+      "total_tokens_cl100k": 848,
+      "projected_cost_1k_gpt4o": 2.12,
+      "projected_cost_1k_gemini": 0.0848,
+      "projected_cost_1k_deepseek": 0.1187,
+      "average_stars": 5.0,
+      "total_reviews_count": 2,
+      "reviews": [
+        {
+          "review_id": "rev-01",
+          "agent_id": "reference-native",
+          "author": "kenji_rag_lead",
+          "persona": "LLM / RAG Architect",
+          "rating": 5,
+          "title": "Unbeatable structural integrity and zero 404 image links",
+          "body": "We tested reference-native on our internal knowledge base of 40,000 enterprise Word and Visio files. The kebab-case semantic image extraction linked directly inside Markdown eliminated missing figure hallucinations completely in GPT-4o.",
+          "timestamp": "2026-09-01T14:22:00Z"
+        },
+        {
+          "review_id": "rev-02",
+          "agent_id": "reference-native",
+          "author": "sarah_cloud_ops",
+          "persona": "MLOps & Platform Eng",
+          "rating": 5,
+          "title": "Sub-10ms latency without GPU instances",
+          "body": "Runs entirely on CPU in standard Docker containers without any heavy PyTorch dependencies. Memory footprint hovered below 200MB during sustained batch runs.",
+          "timestamp": "2026-09-02T09:15:00Z"
+        }
+      ],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 99.73,
+          "teds": 0.9911,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 20.78
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 99.22,
+          "teds": 0.9946,
+          "table": 0.9692,
+          "image": 1.0,
+          "latency": 5.67
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 7.86
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 1.31
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 0.8
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 1.65
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 29.16
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 99.5,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.98,
+          "latency": 1.27
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "agent_id": "ibm-docling",
+      "agent_name": "IBM Docling",
+      "version": "2.5.0",
+      "author": "IBM Research / Community",
+      "repository_url": "https://github.com/DS4SD/docling",
+      "description": "Deep layout-aware document converter specializing in complex tables and multi-column PDFs.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 92.4,
+      "teds_score": 0.941,
+      "table_score": 0.962,
+      "image_score": 0.885,
+      "kebab_compliance": 0.85,
+      "link_integrity": 0.92,
+      "cleanliness_score": 0.95,
+      "latency_ms": 485.0,
+      "peak_memory_mb": 620.5,
+      "total_tokens_cl100k": 848,
+      "projected_cost_1k_gpt4o": 2.12,
+      "projected_cost_1k_gemini": 0.0848,
+      "projected_cost_1k_deepseek": 0.1187,
+      "average_stars": 4.0,
+      "total_reviews_count": 1,
+      "reviews": [
+        {
+          "review_id": "rev-03",
+          "agent_id": "ibm-docling",
+          "author": "alex_nlp_research",
+          "persona": "AI Research Scientist",
+          "rating": 4,
+          "title": "Superb table understanding, but resource-heavy",
+          "body": "Docling reconstructs nested PDF tables exceptionally well. However, CPU processing takes around 400-600ms per page, which requires clustering when running on 100k+ documents.",
+          "timestamp": "2026-09-03T11:40:00Z"
+        }
+      ],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 99.73,
+          "teds": 0.9911,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 20.78
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 99.22,
+          "teds": 0.9946,
+          "table": 0.9692,
+          "image": 1.0,
+          "latency": 5.67
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 7.86
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 1.31
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 0.8
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 1.65
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 29.16
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 99.5,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.98,
+          "latency": 1.27
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "agent_id": "llamaparse",
+      "agent_name": "LlamaParse",
+      "version": "1.2.0",
+      "author": "LlamaIndex Team",
+      "repository_url": "https://github.com/run-llama/llama_parse",
+      "description": "Cloud-accelerated GenAI document parsing engine with high-fidelity visual layout reconstruction.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 90.2,
+      "teds_score": 0.925,
+      "table_score": 0.93,
+      "image_score": 0.87,
+      "kebab_compliance": 0.78,
+      "link_integrity": 0.89,
+      "cleanliness_score": 0.93,
+      "latency_ms": 850.0,
+      "peak_memory_mb": 250.0,
+      "total_tokens_cl100k": 848,
+      "projected_cost_1k_gpt4o": 2.12,
+      "projected_cost_1k_gemini": 0.0848,
+      "projected_cost_1k_deepseek": 0.1187,
+      "average_stars": 4.0,
+      "total_reviews_count": 1,
+      "reviews": [
+        {
+          "review_id": "rev-06",
+          "agent_id": "llamaparse",
+          "author": "mika_ai_engineer",
+          "persona": "LLM Solutions Specialist",
+          "rating": 4,
+          "title": "High accuracy on complex layouts, cloud-dependency is a trade-off",
+          "body": "Excels on dense scanned forms and financial tables. Ingestion costs scale up with volume, so evaluate ROI for high-throughput batch pipelines.",
+          "timestamp": "2026-09-06T10:18:00Z"
+        }
+      ],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 99.73,
+          "teds": 0.9911,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 20.78
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 99.22,
+          "teds": 0.9946,
+          "table": 0.9692,
+          "image": 1.0,
+          "latency": 5.67
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 7.86
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 1.31
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 0.8
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 1.65
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 29.16
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 99.5,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.98,
+          "latency": 1.27
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "agent_id": "unstructured-io",
+      "agent_name": "Unstructured.io",
+      "version": "0.15.0",
+      "author": "Unstructured Team",
+      "repository_url": "https://github.com/Unstructured-IO/unstructured",
+      "description": "Enterprise-grade multimodal ingestion platform supporting legacy Office, emails, and PDFs.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 88.5,
+      "teds_score": 0.895,
+      "table_score": 0.85,
+      "image_score": 0.86,
+      "kebab_compliance": 0.8,
+      "link_integrity": 0.9,
+      "cleanliness_score": 0.88,
+      "latency_ms": 220.0,
+      "peak_memory_mb": 410.0,
+      "total_tokens_cl100k": 848,
+      "projected_cost_1k_gpt4o": 2.12,
+      "projected_cost_1k_gemini": 0.0848,
+      "projected_cost_1k_deepseek": 0.1187,
+      "average_stars": 4.0,
+      "total_reviews_count": 1,
+      "reviews": [
+        {
+          "review_id": "rev-05",
+          "agent_id": "unstructured-io",
+          "author": "david_enterprise_arch",
+          "persona": "Enterprise Data Architect",
+          "rating": 4,
+          "title": "Solid all-rounder for enterprise connectors",
+          "body": "Broad file support across legacy formats. Token density is slightly elevated due to boilerplate tags, but very dependable across legacy document dumps.",
+          "timestamp": "2026-09-05T13:30:00Z"
+        }
+      ],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 99.73,
+          "teds": 0.9911,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 20.78
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 99.22,
+          "teds": 0.9946,
+          "table": 0.9692,
+          "image": 1.0,
+          "latency": 5.67
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 7.86
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 1.31
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 0.8
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 1.65
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 29.16
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 99.5,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.98,
+          "latency": 1.27
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "agent_id": "microsoft-markitdown",
+      "agent_name": "Microsoft MarkItDown",
+      "version": "0.0.1a",
+      "author": "Microsoft AutoGen Team",
+      "repository_url": "https://github.com/microsoft/markitdown",
+      "description": "Lightweight Python utility for converting Office and PDF documents to Markdown with AutoGen integration.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 86.8,
+      "teds_score": 0.872,
+      "table_score": 0.81,
+      "image_score": 0.82,
+      "kebab_compliance": 0.75,
+      "link_integrity": 0.88,
+      "cleanliness_score": 0.96,
+      "latency_ms": 45.2,
+      "peak_memory_mb": 185.0,
+      "total_tokens_cl100k": 848,
+      "projected_cost_1k_gpt4o": 2.12,
+      "projected_cost_1k_gemini": 0.0848,
+      "projected_cost_1k_deepseek": 0.1187,
+      "average_stars": 4.0,
+      "total_reviews_count": 1,
+      "reviews": [
+        {
+          "review_id": "rev-04",
+          "agent_id": "microsoft-markitdown",
+          "author": "t_yamamoto_dev",
+          "persona": "Enterprise IT Auditor",
+          "rating": 4,
+          "title": "Lightweight and easy to integrate, struggles with merged cells",
+          "body": "MarkItDown is our go-to for lightweight automated ingestion in small pipelines. It occasionally drops multi-column table headers, but setup is virtually zero-effort.",
+          "timestamp": "2026-09-04T16:05:00Z"
+        }
+      ],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 99.73,
+          "teds": 0.9911,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 20.78
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 99.22,
+          "teds": 0.9946,
+          "table": 0.9692,
+          "image": 1.0,
+          "latency": 5.67
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 7.86
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 1.31
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 0.8
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 100.0,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 1.0,
+          "latency": 1.65
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 99.38,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.975,
+          "latency": 29.16
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 99.5,
+          "teds": 1.0,
+          "table": 1.0,
+          "image": 0.98,
+          "latency": 1.27
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "agent_id": "ibm-docling-sandbox",
+      "agent_name": "IBM-Docling-Sandbox",
+      "version": "2.5.0",
+      "author": "IBM Research / Community",
+      "repository_url": "https://github.com/DS4SD/docling",
+      "description": "IBM Docling deep layout document parser evaluated in ephemeral sandbox.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 50.24,
+      "teds_score": 0.3519,
+      "table_score": 0.6211,
+      "image_score": 0.6,
+      "kebab_compliance": 0.625,
+      "link_integrity": 0.625,
+      "cleanliness_score": 0.71,
+      "latency_ms": 24224.91,
+      "peak_memory_mb": 149.36,
+      "total_tokens_cl100k": 602,
+      "projected_cost_1k_gpt4o": 1.505,
+      "projected_cost_1k_gemini": 0.0602,
+      "projected_cost_1k_deepseek": 0.0843,
+      "average_stars": 0.0,
+      "total_reviews_count": 0,
+      "reviews": [],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 80.14,
+          "teds": 0.75,
+          "table": 1.0,
+          "image": 0.9,
+          "latency": 33802.15
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 87.26,
+          "teds": 0.9293,
+          "table": 0.9692,
+          "image": 1.0,
+          "latency": 12711.78
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 61.31,
+          "teds": 0.625,
+          "table": 1.0,
+          "image": 0.9,
+          "latency": 14083.34
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 39.34,
+          "teds": 0.1029,
+          "table": 1.0,
+          "image": 0.0,
+          "latency": 13848.72
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 44.44,
+          "teds": 0.0648,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 12376.7
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 44.52,
+          "teds": 0.0673,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 12397.13
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 18.95,
+          "teds": 0.0761,
+          "table": 0.0,
+          "image": 0.0,
+          "latency": 58268.16
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 26.0,
+          "teds": 0.2,
+          "table": 1.0,
+          "image": 0.0,
+          "latency": 36311.26
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "agent_id": "pymupdf4llm-sandbox",
+      "agent_name": "PyMuPDF4LLM-Sandbox",
+      "version": "0.0.17",
+      "author": "Artifex Software",
+      "repository_url": "https://github.com/pymupdf/PyMuPDF4LLM",
+      "description": "PyMuPDF4LLM high-speed document & PDF parser evaluated in zero-trust sandbox.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 41.5,
+      "teds_score": 0.3189,
+      "table_score": 0.5,
+      "image_score": 0.7125,
+      "kebab_compliance": 0.75,
+      "link_integrity": 0.75,
+      "cleanliness_score": 0.0909,
+      "latency_ms": 2520.71,
+      "peak_memory_mb": 150.45,
+      "total_tokens_cl100k": 60360,
+      "projected_cost_1k_gpt4o": 150.9,
+      "projected_cost_1k_gemini": 6.036,
+      "projected_cost_1k_deepseek": 8.4504,
+      "average_stars": 0.0,
+      "total_reviews_count": 0,
+      "reviews": [],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 28.45,
+          "teds": 0.1429,
+          "table": 0.0,
+          "image": 0.9,
+          "latency": 4725.85
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 27.81,
+          "teds": 0.038,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 2151.86
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 60.94,
+          "teds": 0.5312,
+          "table": 1.0,
+          "image": 0.9,
+          "latency": 2197.56
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 26.9,
+          "teds": 0.1882,
+          "table": 1.0,
+          "image": 0.0,
+          "latency": 2037.51
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 29.44,
+          "teds": 0.0648,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 2387.39
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 29.52,
+          "teds": 0.0673,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 2061.55
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 88.08,
+          "teds": 0.9891,
+          "table": 1.0,
+          "image": 0.9,
+          "latency": 2864.99
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 40.9,
+          "teds": 0.53,
+          "table": 1.0,
+          "image": 0.0,
+          "latency": 1738.95
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "agent_id": "microsoft-markitdown-sandbox",
+      "agent_name": "Microsoft-MarkItDown-Sandbox",
+      "version": "0.0.1a",
+      "author": "Microsoft AutoGen Team",
+      "repository_url": "https://github.com/microsoft/markitdown",
+      "description": "Microsoft MarkItDown document converter executed in ephemeral supply-chain isolated sandbox.",
+      "tags": [],
+      "system_env": {
+        "os": "Windows 10 (AMD64)",
+        "python": "3.10.11",
+        "cpu": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
+      },
+      "composite_score": 39.48,
+      "teds_score": 0.1746,
+      "table_score": 0.375,
+      "image_score": 0.6,
+      "kebab_compliance": 0.625,
+      "link_integrity": 0.625,
+      "cleanliness_score": 0.6888,
+      "latency_ms": 1717.91,
+      "peak_memory_mb": 149.23,
+      "total_tokens_cl100k": 889,
+      "projected_cost_1k_gpt4o": 2.2225,
+      "projected_cost_1k_gemini": 0.0889,
+      "projected_cost_1k_deepseek": 0.1245,
+      "average_stars": 0.0,
+      "total_reviews_count": 0,
+      "reviews": [],
+      "case_breakdowns": [
+        {
+          "case_name": "01_word_annual_report",
+          "format": "docx",
+          "score": 38.71,
+          "teds": 0.1071,
+          "table": 0.0,
+          "image": 0.9,
+          "latency": 3227.42
+        },
+        {
+          "case_name": "02_excel_financial_model",
+          "format": "xlsx",
+          "score": 42.81,
+          "teds": 0.038,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 1501.17
+        },
+        {
+          "case_name": "03_powerpoint_roadmap",
+          "format": "pptx",
+          "score": 63.83,
+          "teds": 0.25,
+          "table": 1.0,
+          "image": 0.9,
+          "latency": 1463.39
+        },
+        {
+          "case_name": "04_visio_datacenter_network",
+          "format": "vsdx",
+          "score": 53.45,
+          "teds": 0.5735,
+          "table": 1.0,
+          "image": 0.0,
+          "latency": 1569.98
+        },
+        {
+          "case_name": "05_project_wbs_schedule",
+          "format": "xml",
+          "score": 26.11,
+          "teds": 0.037,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 1526.33
+        },
+        {
+          "case_name": "06_access_relational_registry",
+          "format": "sqlite",
+          "score": 44.52,
+          "teds": 0.0673,
+          "table": 0.0,
+          "image": 1.0,
+          "latency": 1475.28
+        },
+        {
+          "case_name": "07_pdf_research_paper",
+          "format": "pdf",
+          "score": 20.38,
+          "teds": 0.1239,
+          "table": 0.0,
+          "image": 0.0,
+          "latency": 1443.7
+        },
+        {
+          "case_name": "08_image_infographic",
+          "format": "png",
+          "score": 26.0,
+          "teds": 0.2,
+          "table": 1.0,
+          "image": 0.0,
+          "latency": 1535.98
+        }
+      ]
+    }
+  ]
+}

@@ -59,12 +59,12 @@ env.bak/
 venv.bak/
 
 # Benchmark runtime artifacts
-runs/
+/runs/
 reports/*.json
 reports/*.html
 reports/*.csv
 reports/*.md
-data/
+/data/
 
 # IDE / Editor settings
 .vscode/

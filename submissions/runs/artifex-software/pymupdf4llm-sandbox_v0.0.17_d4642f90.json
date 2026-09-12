@@ -1,0 +1,496 @@
+{
+  "agent_id": "pymupdf4llm-sandbox",
+  "agent_name": "PyMuPDF4LLM-Sandbox",
+  "version": "0.0.17",
+  "author": "Artifex Software",
+  "repository_url": "https://github.com/pymupdf/PyMuPDF4LLM",
+  "description": "PyMuPDF4LLM high-speed document & PDF parser evaluated in zero-trust sandbox.",
+  "tags": [],
+  "system_env": {
+    "os": "Windows 10 (AMD64)",
+    "python_version": "3.10.11",
+    "cpu_model": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+    "timestamp": "2026-09-12T10:36:52.320465Z"
+  },
+  "run_result": {
+    "converter_name": "PyMuPDF4LLM-Sandbox",
+    "timestamp": "2026-09-12 19:36:48",
+    "total_cases": 8,
+    "successful_cases": 8,
+    "mean_composite_score": 41.5,
+    "mean_teds_score": 0.3189,
+    "mean_table_score": 0.5,
+    "mean_image_score": 0.7125,
+    "mean_link_integrity": 0.75,
+    "mean_kebab_compliance": 0.75,
+    "mean_cleanliness_score": 0.0909,
+    "mean_latency_ms": 2520.71,
+    "mean_peak_memory_mb": 150.45,
+    "total_tokens_cl100k": 60360,
+    "projected_cost_per_1k_suite_usd": {
+      "gpt-4o": 150.9,
+      "claude-3-5-sonnet": 181.08,
+      "gemini-2-0-flash": 6.036,
+      "deepseek-v3": 8.4504
+    },
+    "cases": [
+      {
+        "case_name": "01_word_annual_report",
+        "doc_id": "word-annual-report-01",
+        "format": "docx",
+        "category": "office-word",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.1429,
+          "heading_hierarchy": 0.1667,
+          "table_fidelity": 0.0,
+          "image_integrity": 0.9,
+          "kebab_compliance": 1.0,
+          "link_integrity": 1.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 1,
+          "extracted_image_count": 1,
+          "markdown_image_links_count": 1,
+          "extraction_rate": 1.0,
+          "kebab_compliance_rate": 1.0,
+          "link_integrity_score": 1.0,
+          "alt_keyword_score": 0.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 0.9
+        },
+        "table_metrics": {
+          "table_count_score": 0.0,
+          "dimension_score": 0.0,
+          "content_overlap_score": 0.0,
+          "overall_table_score": 0.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 22184,
+          "tokens_o200k": 21499,
+          "token_inflation_ratio": 137.7888,
+          "latency_ms": 4725.85,
+          "peak_memory_mb": 69.41,
+          "throughput_tokens_per_sec": 4694.2,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 55.46,
+            "claude-3-5-sonnet": 66.552,
+            "gemini-2-0-flash": 2.2184,
+            "deepseek-v3": 3.10576
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 72,
+          "control_chars_count": 5931,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 28.45
+      },
+      {
+        "case_name": "02_excel_financial_model",
+        "doc_id": "excel-financial-model-02",
+        "format": "xlsx",
+        "category": "office-excel",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.038,
+          "heading_hierarchy": 0.1667,
+          "table_fidelity": 0.0,
+          "image_integrity": 1.0,
+          "kebab_compliance": 1.0,
+          "link_integrity": 1.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 0,
+          "extracted_image_count": 0,
+          "markdown_image_links_count": 0,
+          "extraction_rate": 1.0,
+          "kebab_compliance_rate": 1.0,
+          "link_integrity_score": 1.0,
+          "alt_keyword_score": 1.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 1.0
+        },
+        "table_metrics": {
+          "table_count_score": 0.0,
+          "dimension_score": 0.0,
+          "content_overlap_score": 0.0,
+          "overall_table_score": 0.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 3004,
+          "tokens_o200k": 2826,
+          "token_inflation_ratio": 18.775,
+          "latency_ms": 2151.86,
+          "peak_memory_mb": 165.7,
+          "throughput_tokens_per_sec": 1396.0,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 7.51,
+            "claude-3-5-sonnet": 9.012,
+            "gemini-2-0-flash": 0.3004,
+            "deepseek-v3": 0.42056
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 8,
+          "control_chars_count": 1031,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 27.81
+      },
+      {
+        "case_name": "03_powerpoint_roadmap",
+        "doc_id": "powerpoint-roadmap-03",
+        "format": "pptx",
+        "category": "office-ppt",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.5312,
+          "heading_hierarchy": 0.25,
+          "table_fidelity": 1.0,
+          "image_integrity": 0.9,
+          "kebab_compliance": 1.0,
+          "link_integrity": 1.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 1,
+          "extracted_image_count": 1,
+          "markdown_image_links_count": 1,
+          "extraction_rate": 1.0,
+          "kebab_compliance_rate": 1.0,
+          "link_integrity_score": 1.0,
+          "alt_keyword_score": 0.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 0.9
+        },
+        "table_metrics": {
+          "table_count_score": 1.0,
+          "dimension_score": 1.0,
+          "content_overlap_score": 1.0,
+          "overall_table_score": 1.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 18634,
+          "tokens_o200k": 17595,
+          "token_inflation_ratio": 405.087,
+          "latency_ms": 2197.56,
+          "peak_memory_mb": 160.99,
+          "throughput_tokens_per_sec": 8479.4,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 46.585,
+            "claude-3-5-sonnet": 55.902,
+            "gemini-2-0-flash": 1.8634,
+            "deepseek-v3": 2.60876
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 57,
+          "control_chars_count": 5533,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 60.94
+      },
+      {
+        "case_name": "04_visio_datacenter_network",
+        "doc_id": "visio-datacenter-04",
+        "format": "vsdx",
+        "category": "office-visio",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.1882,
+          "heading_hierarchy": 0.125,
+          "table_fidelity": 1.0,
+          "image_integrity": 0.0,
+          "kebab_compliance": 0.0,
+          "link_integrity": 0.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 1,
+          "extracted_image_count": 0,
+          "markdown_image_links_count": 0,
+          "extraction_rate": 0.0,
+          "kebab_compliance_rate": 0.0,
+          "link_integrity_score": 0.0,
+          "alt_keyword_score": 0.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 0.0
+        },
+        "table_metrics": {
+          "table_count_score": 1.0,
+          "dimension_score": 1.0,
+          "content_overlap_score": 1.0,
+          "overall_table_score": 1.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 3518,
+          "tokens_o200k": 3374,
+          "token_inflation_ratio": 29.8136,
+          "latency_ms": 2037.51,
+          "peak_memory_mb": 162.7,
+          "throughput_tokens_per_sec": 1726.6,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 8.795,
+            "claude-3-5-sonnet": 10.554,
+            "gemini-2-0-flash": 0.3518,
+            "deepseek-v3": 0.49252
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 16,
+          "control_chars_count": 973,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 26.9
+      },
+      {
+        "case_name": "05_project_wbs_schedule",
+        "doc_id": "project-wbs-05",
+        "format": "xml",
+        "category": "office-project",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.0648,
+          "heading_hierarchy": 0.25,
+          "table_fidelity": 0.0,
+          "image_integrity": 1.0,
+          "kebab_compliance": 1.0,
+          "link_integrity": 1.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 0,
+          "extracted_image_count": 0,
+          "markdown_image_links_count": 0,
+          "extraction_rate": 1.0,
+          "kebab_compliance_rate": 1.0,
+          "link_integrity_score": 1.0,
+          "alt_keyword_score": 1.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 1.0
+        },
+        "table_metrics": {
+          "table_count_score": 0.0,
+          "dimension_score": 0.0,
+          "content_overlap_score": 0.0,
+          "overall_table_score": 0.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 247,
+          "tokens_o200k": 247,
+          "token_inflation_ratio": 2.2455,
+          "latency_ms": 2387.39,
+          "peak_memory_mb": 161.86,
+          "throughput_tokens_per_sec": 103.5,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 0.6175,
+            "claude-3-5-sonnet": 0.741,
+            "gemini-2-0-flash": 0.0247,
+            "deepseek-v3": 0.03458
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 45,
+          "control_chars_count": 0,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 29.44
+      },
+      {
+        "case_name": "06_access_relational_registry",
+        "doc_id": "db-registry-06",
+        "format": "sqlite",
+        "category": "office-db",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.0673,
+          "heading_hierarchy": 0.25,
+          "table_fidelity": 0.0,
+          "image_integrity": 1.0,
+          "kebab_compliance": 1.0,
+          "link_integrity": 1.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 0,
+          "extracted_image_count": 0,
+          "markdown_image_links_count": 0,
+          "extraction_rate": 1.0,
+          "kebab_compliance_rate": 1.0,
+          "link_integrity_score": 1.0,
+          "alt_keyword_score": 1.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 1.0
+        },
+        "table_metrics": {
+          "table_count_score": 0.0,
+          "dimension_score": 0.0,
+          "content_overlap_score": 0.0,
+          "overall_table_score": 0.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 7901,
+          "tokens_o200k": 4019,
+          "token_inflation_ratio": 89.7841,
+          "latency_ms": 2061.55,
+          "peak_memory_mb": 160.68,
+          "throughput_tokens_per_sec": 3832.6,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 19.7525,
+            "claude-3-5-sonnet": 23.703,
+            "gemini-2-0-flash": 0.7901,
+            "deepseek-v3": 1.10614
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 0,
+          "control_chars_count": 7812,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 29.52
+      },
+      {
+        "case_name": "07_pdf_research_paper",
+        "doc_id": "pdf-research-paper-07",
+        "format": "pdf",
+        "category": "pdf",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.9891,
+          "heading_hierarchy": 0.5,
+          "table_fidelity": 1.0,
+          "image_integrity": 0.9,
+          "kebab_compliance": 1.0,
+          "link_integrity": 1.0,
+          "cleanliness": 0.7273
+        },
+        "image_metrics": {
+          "expected_image_count": 1,
+          "extracted_image_count": 1,
+          "markdown_image_links_count": 1,
+          "extraction_rate": 1.0,
+          "kebab_compliance_rate": 1.0,
+          "link_integrity_score": 1.0,
+          "alt_keyword_score": 0.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 0.9
+        },
+        "table_metrics": {
+          "table_count_score": 1.0,
+          "dimension_score": 1.0,
+          "content_overlap_score": 1.0,
+          "overall_table_score": 1.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 139,
+          "tokens_o200k": 139,
+          "token_inflation_ratio": 1.112,
+          "latency_ms": 2864.99,
+          "peak_memory_mb": 161.57,
+          "throughput_tokens_per_sec": 48.5,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 0.3475,
+            "claude-3-5-sonnet": 0.417,
+            "gemini-2-0-flash": 0.0139,
+            "deepseek-v3": 0.01946
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 0.2727,
+          "raw_html_count": 0,
+          "control_chars_count": 0,
+          "excessive_newlines_count": 1,
+          "cleanliness_score": 0.7273
+        },
+        "composite_score_100": 88.08
+      },
+      {
+        "case_name": "08_image_infographic",
+        "doc_id": "image-infographic-08",
+        "format": "png",
+        "category": "image",
+        "success": true,
+        "error_message": null,
+        "scores": {
+          "teds": 0.53,
+          "heading_hierarchy": 0.5,
+          "table_fidelity": 1.0,
+          "image_integrity": 0.0,
+          "kebab_compliance": 0.0,
+          "link_integrity": 0.0,
+          "cleanliness": 0.0
+        },
+        "image_metrics": {
+          "expected_image_count": 1,
+          "extracted_image_count": 0,
+          "markdown_image_links_count": 0,
+          "extraction_rate": 0.0,
+          "kebab_compliance_rate": 0.0,
+          "link_integrity_score": 0.0,
+          "alt_keyword_score": 0.0,
+          "broken_links": [],
+          "orphan_images": [],
+          "overall_image_score": 0.0
+        },
+        "table_metrics": {
+          "table_count_score": 1.0,
+          "dimension_score": 1.0,
+          "content_overlap_score": 1.0,
+          "overall_table_score": 1.0
+        },
+        "cost_metrics": {
+          "tokens_cl100k": 4733,
+          "tokens_o200k": 4511,
+          "token_inflation_ratio": 124.5526,
+          "latency_ms": 1738.95,
+          "peak_memory_mb": 160.7,
+          "throughput_tokens_per_sec": 2721.8,
+          "projected_cost_per_1k_docs_usd": {
+            "gpt-4o": 11.8325,
+            "claude-3-5-sonnet": 14.199,
+            "gemini-2-0-flash": 0.4733,
+            "deepseek-v3": 0.66262
+          }
+        },
+        "cleanliness_metrics": {
+          "noise_ratio": 1.0,
+          "raw_html_count": 13,
+          "control_chars_count": 1561,
+          "excessive_newlines_count": 0,
+          "cleanliness_score": 0.0
+        },
+        "composite_score_100": 40.9
+      }
+    ]
+  },
+  "checksum_sha256": "d4642f90d39c39db1a27923eac7463a8b2f24617b8cc113078184a149d7884a6"
+}
