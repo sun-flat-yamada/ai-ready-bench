@@ -1,3 +1,5 @@
+[ **English** | [日本語](PERSONA_REVIEWS.ja.md) ]
+
 # Multi-Persona Review & System Polish Report
 
 To ensure the benchmark framework meets real-world enterprise, operational, and scientific rigor, the system was subjected to reviews from four distinct engineering personas during development.

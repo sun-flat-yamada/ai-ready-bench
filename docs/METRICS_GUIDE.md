@@ -1,3 +1,5 @@
+[ **English** | [日本語](METRICS_GUIDE.ja.md) ]
+
 # Metrics Guide & Evaluation Standards
 
 This guide explains each metric calculated by `aiready-benchmark`, the underlying algorithm, and target thresholds.

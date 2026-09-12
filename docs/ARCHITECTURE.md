@@ -1,3 +1,5 @@
+[ **English** | [日本語](ARCHITECTURE.ja.md) ]
+
 # Architecture Design: AI-Ready Document Conversion Benchmark (`aiready`)
 
 This document outlines the software architecture, algorithms, and evaluation models powering the `aiready-benchmark` suite.

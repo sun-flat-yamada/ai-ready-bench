@@ -1,3 +1,5 @@
+[ **English** | [日本語](README.ja.md) ]
+
 # AI-Ready Document Conversion Benchmark Suite (`aiready`)
 
 [![CI](https://github.com/sun-flat-yamada/ai-ready-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/sun-flat-yamada/ai-ready-bench/actions)
@@ -188,9 +190,9 @@ uv run aiready compare \
 
 ## 📚 Documentation
 
-- [Architecture Design & Mathematics](docs/ARCHITECTURE.md)
-- [Metrics Guide & Formulas](docs/METRICS_GUIDE.md)
-- [Multi-Persona Review & System Polish Report](docs/PERSONA_REVIEWS.md)
+- [Architecture Design & Mathematics](docs/ARCHITECTURE.md) ([日本語版](docs/ARCHITECTURE.ja.md))
+- [Metrics Guide & Formulas](docs/METRICS_GUIDE.md) ([日本語版](docs/METRICS_GUIDE.ja.md))
+- [Multi-Persona Review & System Polish Report](docs/PERSONA_REVIEWS.md) ([日本語版](docs/PERSONA_REVIEWS.ja.md))
 
 ---
 
