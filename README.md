@@ -8,6 +8,8 @@
 [![Leaderboard](https://img.shields.io/badge/Leaderboard-Live%20on%20GitHub%20Pages-brightgreen.svg)](https://sun-flat-yamada.github.io/ai-ready-bench/)
 [![Tests](https://img.shields.io/badge/pytest-20%20passed-brightgreen.svg)]()
 
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sun.flat.yamada)
+
 A software-driven, deterministic benchmark framework for evaluating document-to-AI-ready Markdown converters. It covers Office suites (Word, Excel, PowerPoint, Visio, Project, Access/DB), PDF, and Images, enforcing strict AST structural fidelity (TEDS), deterministic image extraction with kebab-case semantic naming, link integrity cross-checks, and token economic profiling.
 
 Live Interactive Leaderboard: **[https://sun-flat-yamada.github.io/ai-ready-bench/](https://sun-flat-yamada.github.io/ai-ready-bench/)**
@@ -209,3 +211,11 @@ uv run pytest -v
 ## 📄 License
 
 Licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+## 🤝 Contribution & Support
+
+Contributions are welcome! If you find this tool useful, please consider supporting its development.
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sun.flat.yamada)

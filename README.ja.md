@@ -8,6 +8,8 @@
 [![Leaderboard](https://img.shields.io/badge/Leaderboard-Live%20on%20GitHub%20Pages-brightgreen.svg)](https://sun-flat-yamada.github.io/ai-ready-bench/)
 [![Tests](https://img.shields.io/badge/pytest-20%20passed-brightgreen.svg)]()
 
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sun.flat.yamada)
+
 ドキュメントから「AI-Ready（AI活用に最適化された）Markdown」への変換器を評価するための、ソフトウェア駆動・決定論的なベンチマークフレームワークです。Office スイート（Word、Excel、PowerPoint、Visio、Project、Access/DB）、PDF、画像に対応し、厳格な AST 構造忠実度（TEDS）、ケバブケース（kebab-case）による意味的命名を伴う決定論的画像抽出、リンク整合性の相互検証、トークン経済性のプロファイリングを検証・保証します。
 
 インタラクティブな公開リーダーボード: **[https://sun-flat-yamada.github.io/ai-ready-bench/](https://sun-flat-yamada.github.io/ai-ready-bench/)**
@@ -209,3 +211,11 @@ uv run pytest -v
 ## 📄 ライセンス
 
 MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) を参照してください。
+
+---
+
+## 🤝 Contribution & Support
+
+Contributions are welcome! If you find this tool useful, please consider supporting its development.
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sun.flat.yamada)
