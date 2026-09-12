@@ -114,30 +114,29 @@ python -m http.server --directory docs 8000
 
 ## 🤖 Distribute & Submit Your Custom Agent / Tool
 
-Developers and researchers can run benchmarks locally and submit their results to the community leaderboard with automatic verification:
+Participants can benchmark their open-source or proprietary converters and submit results to the community leaderboard securely.
+
+### 🧠 Benchmark Participant AI Agent
+For AI pair programming (Antigravity, Cursor, Claude Code), this workflow is encapsulated in the **[`benchmark-participant`](.agents/skills/benchmark-participant/SKILL.md)** skill and repository rules ([`AGENTS.md`](AGENTS.md)). Simply request:
+> *"Benchmark my converter [name] and prepare a submission for the leaderboard."*
+
+The agent handles Docker detection, secure execution, link/image validation, and PR creation.
+
+### 🛡️ Secure Execution: Docker-First Sandboxing
+External converters can execute arbitrary code. Benchmark execution defaults to an isolated Docker container with dropped capabilities, non-root user (`benchuser:10001`), and memory/CPU limits:
 
 ```bash
-# 1. Benchmark your custom agent/converter
-uv run aiready run \
-  --dataset ./data/benchmark-suite \
-  --converter custom \
-  --name "MyDoclingAgent" \
-  --custom-cmd "python my_converter.py {input} {output_dir}" \
-  --output-json ./reports/my_result.json
+# 1. Run via Docker-first sandbox (with interactive local fallback confirmation)
+python scripts/sandboxed_benchmark.py docling
 
-# 2. Package and sign the submission manifest
-uv run aiready submit \
-  --result ./reports/my_result.json \
-  --agent-name "MyDoclingAgent" \
-  --author "your-github-username" \
-  --version "1.0.0" \
-  --description "Enhanced Docling layout engine with custom OCR table aligner"
+# 2. In non-interactive CI or when allowing local fallback without prompt:
+python scripts/sandboxed_benchmark.py docling --allow-local-fallback
 
 # 3. Compile the leaderboard locally or open a Pull Request
 uv run aiready build-leaderboard --submissions-dir ./submissions --output ./docs/data/leaderboard.json
 ```
 
-When a Pull Request with a new file in `submissions/*.json` is opened, the automated GitHub Actions workflow (`.github/workflows/leaderboard-ingest.yml`) verifies the SHA256 payload checksum, compiles the leaderboard, and deploys it to GitHub Pages.
+When a Pull Request with a new file in `submissions/runs/<author>/` is opened, the automated GitHub Actions workflow verifies the SHA256 payload checksum, compiles the leaderboard, and deploys it to GitHub Pages.
 
 ---
 

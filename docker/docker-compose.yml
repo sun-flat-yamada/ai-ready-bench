@@ -1,0 +1,56 @@
+# ==============================================================================
+# Docker Compose specification for AI-Ready Benchmark Suite
+# Enforces non-root execution, resource limits, and capability dropping.
+# ==============================================================================
+
+version: "3.8"
+
+services:
+  # Isolated, zero-network benchmark execution (default safe profile)
+  benchmark:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: ai-ready-bench:latest
+    user: "10001:10001"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    network_mode: none
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4096M
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+    volumes:
+      - ../data:/workspace/data:ro
+      - ../runs:/workspace/runs:rw
+      - ../reports:/workspace/reports:rw
+      - ../submissions:/workspace/submissions:rw
+    command: ["run", "--dataset", "/workspace/data/benchmark-suite", "--converter", "reference"]
+
+  # Online profile (used only when external packages must be installed before running)
+  benchmark-online:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: ai-ready-bench:latest
+    user: "10001:10001"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4096M
+    volumes:
+      - ../data:/workspace/data:ro
+      - ../runs:/workspace/runs:rw
+      - ../reports:/workspace/reports:rw
+      - ../submissions:/workspace/submissions:rw
