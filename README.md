@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/sun-flat-yamada/ai-ready-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/sun-flat-yamada/ai-ready-bench/actions)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Leaderboard](https://img.shields.io/badge/Leaderboard-Live%20on%20GitHub%20Pages-brightgreen.svg)](https://sun-flat-yamada.github.io/ai-ready-bench/)
 [![Tests](https://img.shields.io/badge/pytest-20%20passed-brightgreen.svg)]()
 
@@ -206,4 +206,4 @@ uv run pytest -v
 
 ## 📄 License
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+Licensed under the MIT License. See [LICENSE](LICENSE) for details.
