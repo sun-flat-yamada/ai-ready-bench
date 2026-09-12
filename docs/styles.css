@@ -409,10 +409,22 @@ body {
   background: #090d16;
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 1rem;
-  font-family: monospace;
+  padding: 1rem 1.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--accent-emerald);
   overflow-x: auto;
+  white-space: pre;
   margin: 1rem 0;
+}
+
+.code-block code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: inherit;
 }

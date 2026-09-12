@@ -98,8 +98,7 @@
         Anyone can benchmark an open-source library, a private container, or a custom LLM pipeline using the local runner, and submit the results to this leaderboard with automatic verification.
       </p>
 
-      <div class="code-block">
-# 1. Install ai-ready-bench CLI
+      <pre class="code-block"><code># 1. Install ai-ready-bench CLI
 git clone https://github.com/sun-flat-yamada/ai-ready-bench.git
 cd ai-ready-bench && uv pip install -e .
 
@@ -120,8 +119,7 @@ aiready submit \
   --description "High-speed multi-modal converter with custom OCR and table parser."
 
 # 4. Push branch & Open a Pull Request!
-# GitHub Actions will validate checksums and auto-merge into the leaderboard.
-      </div>
+# GitHub Actions will validate checksums and auto-merge into the leaderboard.</code></pre>
     </section>
 
   </main>
